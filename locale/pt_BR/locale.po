@@ -1,0 +1,5 @@
+msgid "plugins.reports.journalsReport.displayName"
+msgstr "Relatório de Periódicos"
+
+msgid "plugins.reports.journalsReport.description"
+msgstr "Gera um relatório com metadados de Periódicos."

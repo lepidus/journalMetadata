@@ -1,0 +1,5 @@
+msgid "plugins.reports.journalsReport.displayName"
+msgstr "Journals Report"
+
+msgid "plugins.reports.journalsReport.description"
+msgstr "Generates a report with metadata of Journals."
