@@ -38,4 +38,9 @@ class JournalReportDao
     {
         return $this->journal->getContactEmail();
     }
+
+    public function getPrintIssn(): string
+    {
+        return $this->journal->getData('printIssn');
+    }
 }
