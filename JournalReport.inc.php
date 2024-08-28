@@ -1,6 +1,6 @@
 <?php
 
-class JournalReportDao
+class JournalReport
 {
     private $journal;
 

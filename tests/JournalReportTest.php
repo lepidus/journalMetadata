@@ -1,18 +1,18 @@
 <?php
 
 import('lib.pkp.tests.PKPTestCase');
-import('plugins.reports.journalsReport.JournalReportDao');
+import('plugins.reports.journalsReport.JournalReport');
 
-class JournalReportDaoTest extends PKPTestCase
+class JournalReportTest extends PKPTestCase
 {
     private $journal;
-    private $journalReportDao;
+    private $journalReport;
 
     protected function setUp(): void
     {
         parent::setUp();
         $this->journal = $this->createMockedJournal();
-        $this->journalReportDao = new JournalReportDao($this->journal);
+        $this->journalReport = new JournalReport($this->journal);
     }
 
     protected function getMockedDAOs()
@@ -51,46 +51,46 @@ class JournalReportDaoTest extends PKPTestCase
 
     public function testJournalIdRetrieval()
     {
-        $this->assertEquals($this->journal->getId(), $this->journalReportDao->getId());
+        $this->assertEquals($this->journal->getId(), $this->journalReport->getId());
     }
 
     public function testJournalTitleRetrieval()
     {
-        $this->assertEquals($this->journal->getLocalizedName(), $this->journalReportDao->getTitle());
+        $this->assertEquals($this->journal->getLocalizedName(), $this->journalReport->getTitle());
     }
 
     public function testJournalAffiliationRetrieval()
     {
-        $this->assertEquals($this->journal->getData('publisherInstitution'), $this->journalReportDao->getAffiliation());
+        $this->assertEquals($this->journal->getData('publisherInstitution'), $this->journalReport->getAffiliation());
     }
 
     public function testJournalSupportPhoneRetrieval()
     {
-        $this->assertEquals($this->journal->getData('supportPhone'), $this->journalReportDao->getSupportPhone());
+        $this->assertEquals($this->journal->getData('supportPhone'), $this->journalReport->getSupportPhone());
     }
 
     public function testJournalContactNameRetrieval()
     {
-        $this->assertEquals($this->journal->getContactName(), $this->journalReportDao->getContactName());
+        $this->assertEquals($this->journal->getContactName(), $this->journalReport->getContactName());
     }
 
     public function testJournalContactEmailRetrieval()
     {
-        $this->assertEquals($this->journal->getContactEmail(), $this->journalReportDao->getContactEmail());
+        $this->assertEquals($this->journal->getContactEmail(), $this->journalReport->getContactEmail());
     }
 
     public function testJournalOnlineIssnRetrieval()
     {
-        $this->assertEquals($this->journal->getData('onlineIssn'), $this->journalReportDao->getOnlineIssn());
+        $this->assertEquals($this->journal->getData('onlineIssn'), $this->journalReport->getOnlineIssn());
     }
 
     public function testJournalPrintIssnRetrieval()
     {
-        $this->assertEquals($this->journal->getData('printIssn'), $this->journalReportDao->getPrintIssn());
+        $this->assertEquals($this->journal->getData('printIssn'), $this->journalReport->getPrintIssn());
     }
 
     public function testJournalLicenseRetrieval()
     {
-        $this->assertEquals($this->journal->getData('licenseUrl'), $this->journalReportDao->getLicenseUrl());
+        $this->assertEquals($this->journal->getData('licenseUrl'), $this->journalReport->getLicenseUrl());
     }
 }
