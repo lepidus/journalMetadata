@@ -28,4 +28,9 @@ class JournalReportDao
     {
         return $this->journal->getData('supportPhone');
     }
+
+    public function getContactName(): string
+    {
+        return $this->journal->getContactName();
+    }
 }
