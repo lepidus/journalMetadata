@@ -48,4 +48,9 @@ class JournalReportDao
     {
         return $this->journal->getData('printIssn');
     }
+
+    public function getLicenseUrl(): string
+    {
+        return $this->journal->getData('licenseUrl');
+    }
 }

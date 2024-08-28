@@ -88,4 +88,9 @@ class JournalReportDaoTest extends PKPTestCase
     {
         $this->assertEquals($this->journal->getData('printIssn'), $this->journalReportDao->getPrintIssn());
     }
+
+    public function testJournalLicenseRetrieval()
+    {
+        $this->assertEquals($this->journal->getData('licenseUrl'), $this->journalReportDao->getLicenseUrl());
+    }
 }
