@@ -33,4 +33,9 @@ class JournalReportDao
     {
         return $this->journal->getContactName();
     }
+
+    public function getContactEmail(): string
+    {
+        return $this->journal->getContactEmail();
+    }
 }
