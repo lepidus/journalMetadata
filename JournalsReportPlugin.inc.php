@@ -1,6 +1,8 @@
 <?php
 
 import('lib.pkp.classes.plugins.ReportPlugin');
+import('plugins.reports.journalsReport.JournalReportDao');
+import('plugins.reports.journalsReport.GenerateCsv');
 
 class JournalsReportPlugin extends ReportPlugin
 {
@@ -33,6 +35,8 @@ class JournalsReportPlugin extends ReportPlugin
     {
         $dispatcher = $request->getDispatcher();
         $templateManager = TemplateManager::getManager();
+        $contextId = $request->getContext()->getId();
+
         $templateManager->assign([
             'breadcrumbs' => [
                 [
@@ -47,6 +51,8 @@ class JournalsReportPlugin extends ReportPlugin
             ],
             'pageTitle', __('plugins.reports.journalsReport.displayName')
         ]);
-        $templateManager->display($this->getTemplateResource('index.tpl'));
+
+        $journalReportDao = new JournalReportDao($contextId);
+        GenerateCsv::execute($journalReportDao);
     }
 }
