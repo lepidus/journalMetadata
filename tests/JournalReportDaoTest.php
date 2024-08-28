@@ -46,4 +46,9 @@ class JournalReportDaoTest extends PKPTestCase
     {
         $this->assertEquals($this->journal->getId(), $this->journalReportDao->getId());
     }
+
+    public function testJournalTitleRetrieval()
+    {
+        $this->assertEquals($this->journal->getLocalizedName(), $this->journalReportDao->getTitle());
+    }
 }

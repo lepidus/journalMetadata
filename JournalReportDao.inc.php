@@ -13,4 +13,9 @@ class JournalReportDao
     {
         return $this->journal->getId();
     }
+
+    public function getTitle(): string
+    {
+        return $this->journal->getLocalizedName();
+    }
 }
