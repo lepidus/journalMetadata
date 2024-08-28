@@ -28,6 +28,13 @@ class JournalReportDaoTest extends PKPTestCase
         $journal = new Journal();
         $journal->setId(rand());
         $journal->setName('Middle Earth papers', 'pt_BR');
+        $journal->setData('publisherInstitution', 'Lepidus Tecnologia');
+        $journal->setContactName('Ramiro Vaca');
+        $journal->setContactEmail('rvaca@mailinator.com');
+        $journal->setData('supportPhone', '987362537492');
+        $journal->setData('onlineIssn', '0000-0001');
+        $journal->setData('printIssn', '0000-0002');
+        $journal->setData('licenseUrl', 'https://creativecommons.org/licenses/by-nc-sa/4.0/deed.pt_BR ');
 
         $mockJournalDAO = $this->getMockBuilder(JournalDAO::class)
             ->setMethods(['getById'])
