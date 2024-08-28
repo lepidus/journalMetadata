@@ -5,11 +5,45 @@ import('plugins.reports.journalsReport.JournalReportDao');
 
 class JournalReportDaoTest extends PKPTestCase
 {
+    private $journal;
+    private $journalReportDao;
+
+    protected function setUp(): void
+    {
+        parent::setUp();
+        $this->journal = $this->createMockedJournal();
+        $this->journalReportDao = new JournalReportDao($this->journal);
+    }
+
+    protected function getMockedDAOs()
+    {
+        return [
+            'JournalDAO'
+        ];
+    }
+
+    private function createMockedJournal()
+    {
+        import('classes.journal.Journal');
+        $journal = new Journal();
+        $journal->setId(rand());
+        $journal->setName('Middle Earth papers', 'pt_BR');
+
+        $mockJournalDAO = $this->getMockBuilder(JournalDAO::class)
+            ->setMethods(['getById'])
+            ->getMock();
+
+        $mockJournalDAO->expects($this->any())
+            ->method('getById')
+            ->will($this->returnValue($journal));
+
+        DAORegistry::registerDAO('JournalDAO', $mockJournalDAO);
+
+        return $journal;
+    }
+
     public function testJournalIdRetrieval()
     {
-        $contextId = rand();
-        $journalReportDao = new JournalReportDao($contextId);
-
-        $this->assertEquals($contextId, $journalReportDao->getId());
+        $this->assertEquals($this->journal->getId(), $this->journalReportDao->getId());
     }
 }

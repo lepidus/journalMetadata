@@ -2,15 +2,15 @@
 
 class JournalReportDao
 {
-    private $journalId;
+    private $journal;
 
-    public function __construct(int $journalId)
+    public function __construct($journal)
     {
-        $this->journalId = $journalId;
+        $this->journal = $journal;
     }
 
     public function getId(): int
     {
-        return $this->journalId;
+        return $this->journal->getId();
     }
 }
