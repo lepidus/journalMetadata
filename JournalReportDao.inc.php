@@ -19,12 +19,12 @@ class JournalReportDao
         return $this->journal->getLocalizedName();
     }
 
-    public function getAffiliation(): string
+    public function getAffiliation(): ?string
     {
         return $this->journal->getData('publisherInstitution');
     }
 
-    public function getSupportPhone(): string
+    public function getSupportPhone(): ?string
     {
         return $this->journal->getData('supportPhone');
     }
@@ -39,17 +39,17 @@ class JournalReportDao
         return $this->journal->getContactEmail();
     }
 
-    public function getOnlineIssn(): string
+    public function getOnlineIssn(): ?string
     {
         return $this->journal->getData('onlineIssn');
     }
 
-    public function getPrintIssn(): string
+    public function getPrintIssn(): ?string
     {
         return $this->journal->getData('printIssn');
     }
 
-    public function getLicenseUrl(): string
+    public function getLicenseUrl(): ?string
     {
         return $this->journal->getData('licenseUrl');
     }

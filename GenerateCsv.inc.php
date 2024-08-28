@@ -8,13 +8,24 @@ class GenerateCsv
         header("content-disposition: attachment; filename=journalReport-" . date('Ymd') . '.csv');
 
         $columns = array(
-            "ID"
+            "ID", "Título", "Instituição", "Telefone", "Editor responsável", "E-mail", "ISSN Online",
+            "ISSN", "Tipo de licença"
         );
 
         try {
             $fp = fopen('php://output', 'wt');
             fputcsv($fp, $columns);
-            fputcsv($fp, [$journalReportDao->getId()]);
+            fputcsv($fp, [
+                $journalReportDao->getId(),
+                $journalReportDao->getTitle(),
+                $journalReportDao->getAffiliation(),
+                $journalReportDao->getSupportPhone(),
+                $journalReportDao->getContactName(),
+                $journalReportDao->getContactEmail(),
+                $journalReportDao->getOnlineIssn(),
+                $journalReportDao->getPrintIssn(),
+                $journalReportDao->getLicenseUrl()
+            ]);
         } catch(Exception $e) {
             error_log("Erro na tentativa de montar o CSV: " . $e->getMessage());
         } finally {
