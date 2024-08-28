@@ -18,4 +18,9 @@ class JournalReportDao
     {
         return $this->journal->getLocalizedName();
     }
+
+    public function getAffiliation(): string
+    {
+        return $this->journal->getData('publisherInstitution');
+    }
 }
