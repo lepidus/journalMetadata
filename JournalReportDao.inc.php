@@ -23,4 +23,9 @@ class JournalReportDao
     {
         return $this->journal->getData('publisherInstitution');
     }
+
+    public function getSupportPhone(): string
+    {
+        return $this->journal->getData('supportPhone');
+    }
 }
