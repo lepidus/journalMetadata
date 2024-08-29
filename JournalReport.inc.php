@@ -11,11 +11,6 @@ class JournalReport
         $this->journalUrl = $journalUrl;
     }
 
-    public function getId(): int
-    {
-        return $this->journal->getId();
-    }
-
     public function getTitle(): string
     {
         return $this->journal->getLocalizedName();

@@ -8,7 +8,7 @@ class GenerateCsv
         header("content-disposition: attachment; filename=journalReport-" . date('Ymd') . '.csv');
 
         $columns = array(
-            "ID", "Título", "Instituição", "Telefone", "Editor responsável", "E-mail", "ISSN Online",
+            "Título", "Instituição", "Telefone", "Editor responsável", "E-mail", "ISSN Online",
             "ISSN", "URL", "Tipo de licença"
         );
 
@@ -16,7 +16,6 @@ class GenerateCsv
             $fp = fopen('php://output', 'wt');
             fputcsv($fp, $columns);
             fputcsv($fp, [
-                $journalReport->getId(),
                 $journalReport->getTitle(),
                 $journalReport->getAffiliation(),
                 $journalReport->getSupportPhone(),

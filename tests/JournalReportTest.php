@@ -51,11 +51,6 @@ class JournalReportTest extends PKPTestCase
         return $journal;
     }
 
-    public function testJournalIdRetrieval()
-    {
-        $this->assertEquals($this->journal->getId(), $this->journalReport->getId());
-    }
-
     public function testJournalTitleRetrieval()
     {
         $this->assertEquals($this->journal->getLocalizedName(), $this->journalReport->getTitle());
