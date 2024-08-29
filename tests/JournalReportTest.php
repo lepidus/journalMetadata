@@ -7,12 +7,13 @@ class JournalReportTest extends PKPTestCase
 {
     private $journal;
     private $journalReport;
+    private const JOURNAL_URL = "http://localhost:8000/index.php/middleearth";
 
     protected function setUp(): void
     {
         parent::setUp();
         $this->journal = $this->createMockedJournal();
-        $this->journalReport = new JournalReport($this->journal);
+        $this->journalReport = new JournalReport($this->journal, self::JOURNAL_URL);
     }
 
     protected function getMockedDAOs()
@@ -28,6 +29,7 @@ class JournalReportTest extends PKPTestCase
         $journal = new Journal();
         $journal->setId(rand());
         $journal->setName('Middle Earth papers', 'pt_BR');
+        $journal->setPath('middleearth');
         $journal->setData('publisherInstitution', 'Lepidus Tecnologia');
         $journal->setContactName('Ramiro Vaca');
         $journal->setContactEmail('rvaca@mailinator.com');
@@ -47,11 +49,6 @@ class JournalReportTest extends PKPTestCase
         DAORegistry::registerDAO('JournalDAO', $mockJournalDAO);
 
         return $journal;
-    }
-
-    public function testJournalIdRetrieval()
-    {
-        $this->assertEquals($this->journal->getId(), $this->journalReport->getId());
     }
 
     public function testJournalTitleRetrieval()
@@ -92,5 +89,10 @@ class JournalReportTest extends PKPTestCase
     public function testJournalLicenseRetrieval()
     {
         $this->assertEquals($this->journal->getData('licenseUrl'), $this->journalReport->getLicenseUrl());
+    }
+
+    public function testJournalUrlRetrieval()
+    {
+        $this->assertEquals(self::JOURNAL_URL, $this->journalReport->getUrl());
     }
 }
