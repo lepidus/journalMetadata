@@ -9,7 +9,7 @@ class GenerateCsv
 
         $columns = array(
             "ID", "Título", "Instituição", "Telefone", "Editor responsável", "E-mail", "ISSN Online",
-            "ISSN", "Tipo de licença"
+            "ISSN", "URL", "Tipo de licença"
         );
 
         try {
@@ -24,6 +24,7 @@ class GenerateCsv
                 $journalReport->getContactEmail(),
                 $journalReport->getOnlineIssn(),
                 $journalReport->getPrintIssn(),
+                $journalReport->getUrl(),
                 $journalReport->getLicenseUrl()
             ]);
         } catch(Exception $e) {

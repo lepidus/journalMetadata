@@ -7,13 +7,13 @@ class JournalReportTest extends PKPTestCase
 {
     private $journal;
     private $journalReport;
-    private const BASE_URL = "http://localhost:8000";
+    private const JOURNAL_URL = "http://localhost:8000/index.php/middleearth";
 
     protected function setUp(): void
     {
         parent::setUp();
         $this->journal = $this->createMockedJournal();
-        $this->journalReport = new JournalReport($this->journal, self::BASE_URL);
+        $this->journalReport = new JournalReport($this->journal, self::JOURNAL_URL);
     }
 
     protected function getMockedDAOs()
@@ -98,7 +98,6 @@ class JournalReportTest extends PKPTestCase
 
     public function testJournalUrlRetrieval()
     {
-        $journalUrl = self::BASE_URL . "/" . $this->journal->getPath();
-        $this->assertEquals($journalUrl, $this->journalReport->getUrl());
+        $this->assertEquals(self::JOURNAL_URL, $this->journalReport->getUrl());
     }
 }

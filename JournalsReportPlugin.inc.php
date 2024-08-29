@@ -36,6 +36,7 @@ class JournalsReportPlugin extends ReportPlugin
         $dispatcher = $request->getDispatcher();
         $templateManager = TemplateManager::getManager();
         $context = $request->getContext();
+        $baseUrl = $request->getBaseUrl();
 
         $templateManager->assign([
             'breadcrumbs' => [
@@ -52,7 +53,13 @@ class JournalsReportPlugin extends ReportPlugin
             'pageTitle', __('plugins.reports.journalsReport.displayName')
         ]);
 
-        $journalReport = new JournalReport($context);
+        $contextUrl = $request->getDispatcher()->url(
+            $request,
+            ROUTE_PAGE,
+            $context->getPath()
+        );
+
+        $journalReport = new JournalReport($context, $contextUrl);
         GenerateCsv::execute($journalReport);
     }
 }

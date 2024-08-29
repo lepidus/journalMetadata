@@ -3,12 +3,12 @@
 class JournalReport
 {
     private $journal;
-    private $baseUrl;
+    private $journalUrl;
 
-    public function __construct($journal, $baseUrl)
+    public function __construct($journal, $journalUrl)
     {
         $this->journal = $journal;
-        $this->baseUrl = $baseUrl;
+        $this->journalUrl = $journalUrl;
     }
 
     public function getId(): int
@@ -58,6 +58,6 @@ class JournalReport
 
     public function getUrl(): string
     {
-        return $this->baseUrl . "/" . $this->journal->getPath();
+        return $this->journalUrl;
     }
 }
