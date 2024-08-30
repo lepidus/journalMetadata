@@ -52,7 +52,7 @@ class JournalsReportPlugin extends ReportPlugin
             'pageTitle', __('plugins.reports.journalsReport.displayName')
         ]);
 
-        $contextUrl = $request->getDispatcher()->url(
+        $contextUrl = $dispatcher->url(
             $request,
             ROUTE_PAGE,
             $context->getPath()
