@@ -1,6 +1,6 @@
 <?php
 
-class GenerateCsv
+class GenerateReportCsv
 {
     public static function execute($journalReport)
     {

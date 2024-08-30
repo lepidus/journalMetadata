@@ -1,8 +1,7 @@
 <?php
 
 import('lib.pkp.classes.plugins.ReportPlugin');
-import('plugins.reports.journalsReport.JournalReport');
-import('plugins.reports.journalsReport.GenerateCsv');
+import('plugins.reports.journalsReport.report.JournalMetadata');
 
 class JournalsReportPlugin extends ReportPlugin
 {
@@ -59,7 +58,7 @@ class JournalsReportPlugin extends ReportPlugin
             $context->getPath()
         );
 
-        $journalReport = new JournalReport($context, $contextUrl);
-        GenerateCsv::execute($journalReport);
+        $journalReport = new JournalMetadata($context, $contextUrl);
+        $journalReport->getCsv();
     }
 }

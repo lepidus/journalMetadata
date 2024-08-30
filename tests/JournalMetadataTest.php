@@ -1,9 +1,9 @@
 <?php
 
 import('lib.pkp.tests.PKPTestCase');
-import('plugins.reports.journalsReport.JournalReport');
+import('plugins.reports.journalsReport.report.JournalMetadata');
 
-class JournalReportTest extends PKPTestCase
+class JournalMetadataTest extends PKPTestCase
 {
     private $journal;
     private $journalReport;
@@ -13,7 +13,7 @@ class JournalReportTest extends PKPTestCase
     {
         parent::setUp();
         $this->journal = $this->createMockedJournal();
-        $this->journalReport = new JournalReport($this->journal, self::JOURNAL_URL);
+        $this->journalReport = new JournalMetadata($this->journal, self::JOURNAL_URL);
     }
 
     protected function getMockedDAOs()
