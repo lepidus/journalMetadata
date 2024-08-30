@@ -1,8 +1,8 @@
 <?php
 
-class GenerateReportCsv
+class CsvBuilder
 {
-    public static function execute($journalReport)
+    public static function generate($journalReport)
     {
         header('content-type: text/comma-separated-values');
         header("content-disposition: attachment; filename=journalReport-" . date('Ymd') . '.csv');

@@ -1,6 +1,6 @@
 <?php
 
-import('plugins.reports.journalsReport.report.GenerateReportCsv');
+import('plugins.reports.journalsReport.report.CsvBuilder');
 
 class JournalMetadata
 {
@@ -15,7 +15,7 @@ class JournalMetadata
 
     public function getCsv()
     {
-        GenerateReportCsv::execute($this);
+        CsvBuilder::generate($this);
     }
 
     public function getTitle(): string
