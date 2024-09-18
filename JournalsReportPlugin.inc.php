@@ -58,7 +58,7 @@ class JournalsReportPlugin extends ReportPlugin
             $context->getPath()
         );
 
-        $journalReport = new JournalMetadata($context, $contextUrl);
-        $journalReport->getCsv();
+        $journalMetadata = new JournalMetadata($context, $contextUrl);
+        $journalMetadata->getCsv();
     }
 }

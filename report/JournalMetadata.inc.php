@@ -1,6 +1,7 @@
 <?php
 
 import('plugins.reports.journalsReport.report.CsvBuilder');
+import('plugins.reports.journalsReport.EstratoQualisClient');
 
 class JournalMetadata
 {
@@ -61,5 +62,14 @@ class JournalMetadata
     public function getUrl(): string
     {
         return $this->journalUrl;
+    }
+
+    public function getEstratoQualis($httpClient): ?string
+    {
+        if (empty($this->getOnlineIssn()) && empty($this->getPrintIssn())) {
+            return "";
+        }
+        $issn = !empty($this->getOnlineIssn()) ? $this->getOnlineIssn() : $this->getPrintIssn();
+        return EstratoQualisClient::getByIssn($issn, $httpClient)['estrato'];
     }
 }
