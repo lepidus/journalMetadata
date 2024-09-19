@@ -1,8 +1,6 @@
 <?php
 
-use GuzzleHttp\Exception\ServerException;
-use GuzzleHttp\Exception\ClientException;
-use GuzzleHttp\Psr7\Request;
+use GuzzleHttp\Exception\TransferException;
 
 class Client
 {
@@ -24,9 +22,7 @@ class Client
             $responseArray = json_decode($responseBody, true);
 
             return $responseArray;
-        } catch (ServerException $e) {
-            error_log($e->getMessage());
-        } catch (ClientException $e) {
+        } catch (TransferException $e) {
             error_log($e->getMessage());
         }
     }
