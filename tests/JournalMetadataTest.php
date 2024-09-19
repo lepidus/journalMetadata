@@ -11,6 +11,7 @@ class JournalMetadataTest extends PKPTestCase
     private $journal;
     private $journalMetadata;
     private const JOURNAL_URL = "http://localhost:8000/index.php/middleearth";
+    private const BASE_URL = "http://localhost:8081";
 
     protected function setUp(): void
     {
@@ -116,6 +117,6 @@ class JournalMetadataTest extends PKPTestCase
                     new Response(200, [], $responseBody)
                 )
             );
-        $this->assertEquals("A1", $this->journalMetadata->getEstratoQualis($httpClientMock));
+        $this->assertEquals("A1", $this->journalMetadata->getEstratoQualis($httpClientMock, self::BASE_URL));
     }
 }

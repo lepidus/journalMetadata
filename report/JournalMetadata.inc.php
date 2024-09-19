@@ -34,12 +34,12 @@ class JournalMetadata
         return $this->journal->getData('supportPhone');
     }
 
-    public function getContactName(): string
+    public function getContactName(): ?string
     {
         return $this->journal->getContactName();
     }
 
-    public function getContactEmail(): string
+    public function getContactEmail(): ?string
     {
         return $this->journal->getContactEmail();
     }
@@ -64,12 +64,12 @@ class JournalMetadata
         return $this->journalUrl;
     }
 
-    public function getEstratoQualis($httpClient): ?string
+    public function getEstratoQualis($httpClient, $baseUrl): ?string
     {
         if (empty($this->getOnlineIssn()) && empty($this->getPrintIssn())) {
             return "";
         }
         $issn = !empty($this->getOnlineIssn()) ? $this->getOnlineIssn() : $this->getPrintIssn();
-        return EstratoQualisClient::getByIssn($issn, $httpClient)['estrato'];
+        return EstratoQualisClient::getByIssn($issn, $httpClient, $baseUrl)['estrato'];
     }
 }

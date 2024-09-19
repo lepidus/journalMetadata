@@ -2,15 +2,18 @@
 
 use GuzzleHttp\Exception\ServerException;
 use GuzzleHttp\Exception\ClientException;
+use GuzzleHttp\Psr7\Request;
 
 class EstratoQualisClient
 {
-    public static function getByIssn($issn, $httpClient)
+    public const ENDPOINT = "/qualis";
+
+    public static function getByIssn($issn, $httpClient, $baseUrl)
     {
         try {
             $response = $httpClient->request(
                 "GET",
-                "http://localhost:8081/qualis",
+                $baseUrl . self::ENDPOINT,
                 [
                     'query' => [
                         'issn' => $issn
@@ -22,9 +25,9 @@ class EstratoQualisClient
 
             return $responseArray;
         } catch (ServerException $e) {
-            error_log($e);
+            error_log($e->getMessage());
         } catch (ClientException $e) {
-            error_log($e);
+            error_log($e->getMessage());
         }
     }
 }
