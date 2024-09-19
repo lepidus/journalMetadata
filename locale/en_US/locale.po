@@ -3,3 +3,9 @@ msgstr "Journals Report"
 
 msgid "plugins.reports.journalsReport.description"
 msgstr "Generates a report with metadata of Journals."
+
+msgid "plugins.reports.journalsReport.qualisServiceUrlField"
+msgstr "Qualis Service URL"
+
+msgid "plugins.reports.journalsReport.qualisServiceUrlField.description"
+msgstr "Enter the URL of the service that should return the journal's qualis rating from an ISSN."

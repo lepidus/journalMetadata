@@ -2,31 +2,36 @@
 
 class CsvBuilder
 {
-    public static function generate($journalReport)
+    public static function generate($journalMetadata)
     {
         header('content-type: text/comma-separated-values');
-        header("content-disposition: attachment; filename=journalReport-" . date('Ymd') . '.csv');
+        header("content-disposition: attachment; filename=journalMetadata-" . date('Ymd') . '.csv');
 
         $columns = array(
             "Título", "Instituição", "Telefone", "Editor responsável", "E-mail", "ISSN Online",
-            "ISSN", "URL", "Tipo de licença"
+            "ISSN", "URL", "Tipo de licença", "Estrato Qualis"
         );
 
         try {
+            $httpClient = Application::get()->getHttpClient();
+            $context = Application::get()->getRequest()->getContext();
+            $plugin = PluginRegistry::getPlugin('reports', 'JournalsReportPlugin');
+            $qualisUrl = $plugin->getSetting($context->getId(), 'estratoQualisUrl');
             $fp = fopen('php://output', 'wt');
             fputcsv($fp, $columns);
             fputcsv($fp, [
-                $journalReport->getTitle(),
-                $journalReport->getAffiliation(),
-                $journalReport->getSupportPhone(),
-                $journalReport->getContactName(),
-                $journalReport->getContactEmail(),
-                $journalReport->getOnlineIssn(),
-                $journalReport->getPrintIssn(),
-                $journalReport->getUrl(),
-                $journalReport->getLicenseUrl()
+                $journalMetadata->getTitle(),
+                $journalMetadata->getAffiliation(),
+                $journalMetadata->getSupportPhone(),
+                $journalMetadata->getContactName(),
+                $journalMetadata->getContactEmail(),
+                $journalMetadata->getOnlineIssn(),
+                $journalMetadata->getPrintIssn(),
+                $journalMetadata->getUrl(),
+                $journalMetadata->getLicenseUrl(),
+                $journalMetadata->getEstratoQualis($httpClient, $qualisUrl)
             ]);
-        } catch(Exception $e) {
+        } catch (Exception $e) {
             error_log("Erro na tentativa de montar o CSV: " . $e->getMessage());
         } finally {
             fclose($fp);

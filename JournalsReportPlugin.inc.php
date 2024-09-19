@@ -1,7 +1,7 @@
 <?php
 
 import('lib.pkp.classes.plugins.ReportPlugin');
-import('plugins.reports.journalsReport.report.JournalMetadata');
+import('plugins.reports.journalsReport.report.estratoQualis.ClientConfiguration');
 
 class JournalsReportPlugin extends ReportPlugin
 {
@@ -52,13 +52,15 @@ class JournalsReportPlugin extends ReportPlugin
             'pageTitle', __('plugins.reports.journalsReport.displayName')
         ]);
 
-        $contextUrl = $dispatcher->url(
-            $request,
-            ROUTE_PAGE,
-            $context->getPath()
-        );
-
-        $journalReport = new JournalMetadata($context, $contextUrl);
-        $journalReport->getCsv();
+        $requestHandler = new PKPRequest();
+        $form = new ClientConfiguration($this, $context->getId());
+        $form->initData();
+        $requestHandler = new PKPRequest();
+        if ($requestHandler->isPost($request)) {
+            $form->readInputData();
+            $form->execute($request);
+        } else {
+            $form->display();
+        }
     }
 }

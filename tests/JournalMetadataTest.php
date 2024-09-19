@@ -1,19 +1,23 @@
 <?php
 
+use GuzzleHttp\Psr7\Response;
+
 import('lib.pkp.tests.PKPTestCase');
 import('plugins.reports.journalsReport.report.JournalMetadata');
+import('plugins.reports.journalsReport.tests.helpers.ClientInterfaceForTests');
 
 class JournalMetadataTest extends PKPTestCase
 {
     private $journal;
-    private $journalReport;
+    private $journalMetadata;
     private const JOURNAL_URL = "http://localhost:8000/index.php/middleearth";
+    private const BASE_URL = "http://localhost:8081";
 
     protected function setUp(): void
     {
         parent::setUp();
         $this->journal = $this->createMockedJournal();
-        $this->journalReport = new JournalMetadata($this->journal, self::JOURNAL_URL);
+        $this->journalMetadata = new JournalMetadata($this->journal, self::JOURNAL_URL);
     }
 
     protected function getMockedDAOs()
@@ -53,46 +57,66 @@ class JournalMetadataTest extends PKPTestCase
 
     public function testJournalTitleRetrieval()
     {
-        $this->assertEquals($this->journal->getLocalizedName(), $this->journalReport->getTitle());
+        $this->assertEquals($this->journal->getLocalizedName(), $this->journalMetadata->getTitle());
     }
 
     public function testJournalAffiliationRetrieval()
     {
-        $this->assertEquals($this->journal->getData('publisherInstitution'), $this->journalReport->getAffiliation());
+        $this->assertEquals($this->journal->getData('publisherInstitution'), $this->journalMetadata->getAffiliation());
     }
 
     public function testJournalSupportPhoneRetrieval()
     {
-        $this->assertEquals($this->journal->getData('supportPhone'), $this->journalReport->getSupportPhone());
+        $this->assertEquals($this->journal->getData('supportPhone'), $this->journalMetadata->getSupportPhone());
     }
 
     public function testJournalContactNameRetrieval()
     {
-        $this->assertEquals($this->journal->getContactName(), $this->journalReport->getContactName());
+        $this->assertEquals($this->journal->getContactName(), $this->journalMetadata->getContactName());
     }
 
     public function testJournalContactEmailRetrieval()
     {
-        $this->assertEquals($this->journal->getContactEmail(), $this->journalReport->getContactEmail());
+        $this->assertEquals($this->journal->getContactEmail(), $this->journalMetadata->getContactEmail());
     }
 
     public function testJournalOnlineIssnRetrieval()
     {
-        $this->assertEquals($this->journal->getData('onlineIssn'), $this->journalReport->getOnlineIssn());
+        $this->assertEquals($this->journal->getData('onlineIssn'), $this->journalMetadata->getOnlineIssn());
     }
 
     public function testJournalPrintIssnRetrieval()
     {
-        $this->assertEquals($this->journal->getData('printIssn'), $this->journalReport->getPrintIssn());
+        $this->assertEquals($this->journal->getData('printIssn'), $this->journalMetadata->getPrintIssn());
     }
 
     public function testJournalLicenseRetrieval()
     {
-        $this->assertEquals($this->journal->getData('licenseUrl'), $this->journalReport->getLicenseUrl());
+        $this->assertEquals($this->journal->getData('licenseUrl'), $this->journalMetadata->getLicenseUrl());
     }
 
     public function testJournalUrlRetrieval()
     {
-        $this->assertEquals(self::JOURNAL_URL, $this->journalReport->getUrl());
+        $this->assertEquals(self::JOURNAL_URL, $this->journalMetadata->getUrl());
+    }
+
+    public function testJournalEstratoQualisRetrieval()
+    {
+        $httpClientMock = $this->createMock(ClientInterfaceForTests::class);
+        $responseBody = json_encode([
+            "issn" => "0378-5955",
+            "issnUnificado" => "",
+            "titulo" => "HEARING RESEARCH",
+            "areaMae" => "MEDICINA I",
+            "estrato" => "A1"
+        ]);
+
+        $httpClientMock->method('request')
+            ->will(
+                $this->returnValue(
+                    new Response(200, [], $responseBody)
+                )
+            );
+        $this->assertEquals("A1", $this->journalMetadata->getEstratoQualis($httpClientMock, self::BASE_URL));
     }
 }
