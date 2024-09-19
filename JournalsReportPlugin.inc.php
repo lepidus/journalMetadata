@@ -1,7 +1,7 @@
 <?php
 
 import('lib.pkp.classes.plugins.ReportPlugin');
-import('plugins.reports.journalsReport.EstratoQualisClientConfiguration');
+import('plugins.reports.journalsReport.report.estratoQualis.ClientConfiguration');
 
 class JournalsReportPlugin extends ReportPlugin
 {
@@ -53,7 +53,7 @@ class JournalsReportPlugin extends ReportPlugin
         ]);
 
         $requestHandler = new PKPRequest();
-        $form = new EstratoQualisClientConfiguration($this, $context->getId());
+        $form = new ClientConfiguration($this, $context->getId());
         $form->initData();
         $requestHandler = new PKPRequest();
         if ($requestHandler->isPost($request)) {

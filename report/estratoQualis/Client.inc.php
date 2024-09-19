@@ -4,7 +4,7 @@ use GuzzleHttp\Exception\ServerException;
 use GuzzleHttp\Exception\ClientException;
 use GuzzleHttp\Psr7\Request;
 
-class EstratoQualisClient
+class Client
 {
     public const ENDPOINT = "/qualis";
 

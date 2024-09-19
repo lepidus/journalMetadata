@@ -3,7 +3,7 @@
 import('lib.pkp.classes.form.Form');
 import('plugins.reports.journalsReport.report.JournalMetadata');
 
-class EstratoQualisClientConfiguration extends Form
+class ClientConfiguration extends Form
 {
     private $plugin;
     private $contextId;

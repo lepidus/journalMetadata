@@ -1,7 +1,7 @@
 <?php
 
 import('plugins.reports.journalsReport.report.CsvBuilder');
-import('plugins.reports.journalsReport.EstratoQualisClient');
+import('plugins.reports.journalsReport.report.estratoQualis.Client');
 
 class JournalMetadata
 {
@@ -70,6 +70,6 @@ class JournalMetadata
             return "";
         }
         $issn = !empty($this->getOnlineIssn()) ? $this->getOnlineIssn() : $this->getPrintIssn();
-        return EstratoQualisClient::getByIssn($issn, $httpClient, $baseUrl)['estrato'];
+        return Client::getByIssn($issn, $httpClient, $baseUrl)['estrato'];
     }
 }

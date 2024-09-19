@@ -1,7 +1,5 @@
 <?php
 
-import('plugins.reports.journalsReport.EstratoQualisClient');
-
 class CsvBuilder
 {
     public static function generate($journalMetadata)
