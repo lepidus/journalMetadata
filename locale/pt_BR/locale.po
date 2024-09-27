@@ -3,9 +3,3 @@ msgstr "Relatório de Periódicos"
 
 msgid "plugins.reports.journalsReport.description"
 msgstr "Gera um relatório com metadados de Periódicos."
-
-msgid "plugins.reports.journalsReport.qualisServiceUrlField"
-msgstr "URL do serviço de Estrato Qualis"
-
-msgid "plugins.reports.journalsReport.qualisServiceUrlField.description"
-msgstr "Insira a URL do serviço que deve retornar o qualis da revista a partir de um ISSN"

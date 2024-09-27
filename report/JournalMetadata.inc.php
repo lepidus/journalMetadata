@@ -7,6 +7,7 @@ class JournalMetadata
 {
     private $journal;
     private $journalUrl;
+    private const QUALIS_URL = 'https://cambirela.emnuvens.com.br:9999';
 
     public function __construct($journal, $journalUrl)
     {
@@ -64,12 +65,14 @@ class JournalMetadata
         return $this->journalUrl;
     }
 
-    public function getEstratoQualis($httpClient, $baseUrl): ?string
+    public function getEstratoQualis($httpClient, $baseUrl = null): ?string
     {
+        $estratoQualisUrl = $baseUrl ?? self::QUALIS_URL;
+
         if (empty($this->getOnlineIssn()) && empty($this->getPrintIssn())) {
             return "";
         }
         $issn = !empty($this->getOnlineIssn()) ? $this->getOnlineIssn() : $this->getPrintIssn();
-        return Client::getByIssn($issn, $httpClient, $baseUrl)['estrato'];
+        return Client::getByIssn($issn, $httpClient, $estratoQualisUrl)['estrato'];
     }
 }

@@ -14,9 +14,6 @@ class CsvBuilder
 
         try {
             $httpClient = Application::get()->getHttpClient();
-            $context = Application::get()->getRequest()->getContext();
-            $plugin = PluginRegistry::getPlugin('reports', 'JournalsReportPlugin');
-            $qualisUrl = $plugin->getSetting($context->getId(), 'estratoQualisUrl');
             $fp = fopen('php://output', 'wt');
             fputcsv($fp, $columns);
             fputcsv($fp, [
@@ -29,7 +26,7 @@ class CsvBuilder
                 $journalMetadata->getPrintIssn(),
                 $journalMetadata->getUrl(),
                 $journalMetadata->getLicenseUrl(),
-                $journalMetadata->getEstratoQualis($httpClient, $qualisUrl)
+                $journalMetadata->getEstratoQualis($httpClient)
             ]);
         } catch (Exception $e) {
             error_log("Erro na tentativa de montar o CSV: " . $e->getMessage());
