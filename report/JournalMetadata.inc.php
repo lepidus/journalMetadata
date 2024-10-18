@@ -80,4 +80,18 @@ class JournalMetadata
         $issn = !empty($this->getOnlineIssn()) ? $this->getOnlineIssn() : $this->getPrintIssn();
         return Client::getByIssn($issn, $httpClient, $estratoQualisUrl)['estrato'];
     }
+
+    public function getDoiPrefix()
+    {
+        $doiPrefix = null;
+        $pubIdPlugins = PluginRegistry::loadCategory('pubIds', true, $this->journal->getId());
+        if (isset($pubIdPlugins['doipubidplugin'])) {
+            $doiPubIdPlugin = $pubIdPlugins['doipubidplugin'];
+            if (!$doiPubIdPlugin->getSetting($this->journal->getId(), 'enabled')) {
+                return null;
+            }
+            $doiPrefix = $doiPubIdPlugin->getSetting($this->journal->getId(), 'doiPrefix');
+        }
+        return $doiPrefix;
+    }
 }

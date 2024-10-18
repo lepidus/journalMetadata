@@ -10,7 +10,7 @@ class CsvBuilder
         $columns = array(
             "Título da revista", "Editora", "Telefone do apoio técnico", "Telefone do contato principal",
             "Nome do contato principal", "E-mail do contato principal", "ISSN Online",
-            "ISSN", "URL", "Tipo de licença", "Estrato Qualis"
+            "ISSN", "URL", "Tipo de licença", "Estrato Qualis", "Prefixo DOI"
         );
 
         try {
@@ -28,7 +28,8 @@ class CsvBuilder
                 $journalMetadata->getPrintIssn(),
                 $journalMetadata->getUrl(),
                 $journalMetadata->getLicenseUrl(),
-                $journalMetadata->getEstratoQualis($httpClient)
+                $journalMetadata->getEstratoQualis($httpClient),
+                $journalMetadata->getDoiPrefix()
             ]);
         } catch (Exception $e) {
             error_log("Erro na tentativa de montar o CSV: " . $e->getMessage());
