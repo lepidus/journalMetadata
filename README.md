@@ -12,7 +12,7 @@ Para baixar o plugin, vá para a [página de Releases](https://github.com/lepidu
 
 ## Instalação
 
-1. Entre na área de administração do seu site OJS/OPS através do __Painel de Controle__.
+1. Entre na área de administração do seu site OJS através do __Painel de Controle__.
 2. Navegue para `Configurações`>` Website`> `Plugins`> `Enviar um novo plugin`.
 3. Em __Enviar arquivo__ selecione o arquivo __journalMetadata.tar.gz__.
 4. Clique em __Salvar__ e o plugin será instalado no seu site.
