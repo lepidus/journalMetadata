@@ -13,6 +13,6 @@
 <version>
 	<application>journalsReport</application>
 	<type>plugins.reports</type>
-	<release>0.0.0.5</release>
-	<date>2024-09-27</date>
+	<release>0.0.0.6</release>
+	<date>2024-10-18</date>
 </version>
