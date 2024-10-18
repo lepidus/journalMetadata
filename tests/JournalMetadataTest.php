@@ -37,6 +37,7 @@ class JournalMetadataTest extends PKPTestCase
         $journal->setData('publisherInstitution', 'Lepidus Tecnologia');
         $journal->setContactName('Ramiro Vaca');
         $journal->setContactEmail('rvaca@mailinator.com');
+        $journal->setData('contactPhone', '12343727525');
         $journal->setData('supportPhone', '987362537492');
         $journal->setData('onlineIssn', '0000-0001');
         $journal->setData('printIssn', '0000-0002');
@@ -68,6 +69,11 @@ class JournalMetadataTest extends PKPTestCase
     public function testJournalSupportPhoneRetrieval()
     {
         $this->assertEquals($this->journal->getData('supportPhone'), $this->journalMetadata->getSupportPhone());
+    }
+
+    public function testJournalContactPhoneRetrieval()
+    {
+        $this->assertEquals($this->journal->getData('contactPhone'), $this->journalMetadata->getContactPhone());
     }
 
     public function testJournalContactNameRetrieval()

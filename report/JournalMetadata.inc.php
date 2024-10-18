@@ -30,6 +30,11 @@ class JournalMetadata
         return $this->journal->getData('publisherInstitution');
     }
 
+    public function getContactPhone(): ?string
+    {
+        return $this->journal->getData('contactPhone');
+    }
+
     public function getSupportPhone(): ?string
     {
         return $this->journal->getData('supportPhone');
