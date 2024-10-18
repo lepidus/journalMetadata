@@ -1,7 +1,7 @@
 <?php
 
-import('plugins.reports.journalsReport.report.CsvBuilder');
-import('plugins.reports.journalsReport.report.estratoQualis.Client');
+import('plugins.reports.journalMetadata.report.CsvBuilder');
+import('plugins.reports.journalMetadata.report.estratoQualis.Client');
 
 class JournalMetadata
 {

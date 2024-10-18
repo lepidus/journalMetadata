@@ -1,5 +1,5 @@
-msgid "plugins.reports.journalsReport.displayName"
+msgid "plugins.reports.journalMetadata.displayName"
 msgstr "Informe de Revistas"
 
-msgid "plugins.reports.journalsReport.description"
-msgstr "Genera un informe con metadatos de Revistas."
+msgid "plugins.reports.journalMetadata.description"
+msgstr "Genera un informe con metadatos de una Revista."

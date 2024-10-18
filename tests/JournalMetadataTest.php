@@ -3,8 +3,8 @@
 use GuzzleHttp\Psr7\Response;
 
 import('lib.pkp.tests.PKPTestCase');
-import('plugins.reports.journalsReport.report.JournalMetadata');
-import('plugins.reports.journalsReport.tests.helpers.ClientInterfaceForTests');
+import('plugins.reports.journalMetadata.report.JournalMetadata');
+import('plugins.reports.journalMetadata.tests.helpers.ClientInterfaceForTests');
 
 class JournalMetadataTest extends PKPTestCase
 {

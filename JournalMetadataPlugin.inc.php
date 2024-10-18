@@ -1,9 +1,9 @@
 <?php
 
 import('lib.pkp.classes.plugins.ReportPlugin');
-import('plugins.reports.journalsReport.report.JournalMetadata');
+import('plugins.reports.journalMetadata.report.JournalMetadata');
 
-class JournalsReportPlugin extends ReportPlugin
+class JournalMetadataPlugin extends ReportPlugin
 {
     public function register($category, $path, $mainContextId = null): ?bool
     {
@@ -17,17 +17,17 @@ class JournalsReportPlugin extends ReportPlugin
 
     public function getName(): string
     {
-        return 'JournalsReportPlugin';
+        return 'JournalMetadataPlugin';
     }
 
     public function getDisplayName(): string
     {
-        return __('plugins.reports.journalsReport.displayName');
+        return __('plugins.reports.journalMetadata.displayName');
     }
 
     public function getDescription(): string
     {
-        return __('plugins.reports.journalsReport.description');
+        return __('plugins.reports.journalMetadata.description');
     }
 
     public function display($args, $request): void
@@ -45,11 +45,11 @@ class JournalsReportPlugin extends ReportPlugin
                     'url' => $request->getRouter()->url($request, null, 'stats', 'reports'),
                 ],
                 [
-                    'id' => 'journalsReportPlugin',
-                    'name' => __('plugins.reports.journalsReport.displayName')
+                    'id' => 'journalMetadataPlugin',
+                    'name' => __('plugins.reports.journalMetadata.displayName')
                 ],
             ],
-            'pageTitle', __('plugins.reports.journalsReport.displayName')
+            'pageTitle', __('plugins.reports.journalMetadata.displayName')
         ]);
         $dispatcher = $request->getDispatcher();
         $contextUrl = $dispatcher->url(

@@ -1,5 +1,5 @@
 variables:
-    PLUGIN_NAME: 'journalsReport'
+    PLUGIN_NAME: 'journalMetadata'
 
 include:
   - project: 'documentacao-e-tarefas/modelosparaintegracaocontinua'
